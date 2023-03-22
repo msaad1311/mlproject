@@ -230,3 +230,8 @@ pyrightconfig.json
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+.vscode/settings.json
+artifacts/raw_data.csv
+artifacts/test_data.csv
+artifacts/train_data.csv
+data/StudentsPerformance.csv
