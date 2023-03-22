@@ -1,10 +1,12 @@
 import os
 import pandas as pd
 import sys
-from src.exception import MyException
-from src.logger import logging
+
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
+
+from src.exception import MyException
+from src.logger import logging
 
 @dataclass
 class DataIngestionConfig():
