@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 from src.exception import MyException
 from src.logger import logging
-
+from src.utils import file_save
 @dataclass
 class DataIngestionConfig():
     root_folder = r'artifacts/'  
@@ -16,10 +16,10 @@ class DataIngestion():
     def __init__(self) -> None:
         self.data_ingestion_config = DataIngestionConfig()
         
-    def file_save(self,df,title):
-        logging.info(f'saved the file: {title}')
-        df.to_csv(os.path.join(self.data_ingestion_config.root_folder,str(title)),index=False)
-        return
+    # def file_save(self,df,title):
+    #     logging.info(f'saved the file: {title}')
+    #     df.to_csv(os.path.join(self.data_ingestion_config.root_folder,str(title)),index=False)
+    #     return
                   
     def initiate_data_ingestion(self):
         try:
@@ -35,7 +35,7 @@ class DataIngestion():
             
             for key,value in df_to_save.items():
                 # print(key,value)
-                self.file_save(value,key)
+                file_save(path=self.data_ingestion_config.root_folder,df=value,title=key)
             logging.info('Saved the files')
             return (
                 self.data_ingestion_config.root_folder
