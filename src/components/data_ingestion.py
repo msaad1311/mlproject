@@ -5,6 +5,12 @@ import sys
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 from src.exception import MyException
 from src.logger import logging
 from src.utils import file_save
@@ -35,7 +41,7 @@ class DataIngestion():
             
             for key,value in df_to_save.items():
                 # print(key,value)
-                file_save(path=self.data_ingestion_config.root_folder,df=value,title=key)
+                file_save(path=self.data_ingestion_config.root_folder,artifact=value,title=key)
             logging.info('Saved the files')
             return (
                 self.data_ingestion_config.root_folder
@@ -49,7 +55,19 @@ class DataIngestion():
         
 
 if __name__=="__main__":
-    obj = DataIngestion()
-    placeholder = obj.initiate_data_ingestion()
+    obj_ingestion = DataIngestion()
+    root_folder = obj_ingestion.initiate_data_ingestion()
+    
+    obj_transformation = DataTransformation()
+    root_folder = obj_transformation.initiate_data_transformation()
+    
+    obj_trainer = ModelTrainer()
+    r2_score = obj_trainer.initiate_model_training()
+    
+    logging.info(f'The r2 score is {r2_score}')
+    
+    
+    
+    
             
             

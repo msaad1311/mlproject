@@ -99,12 +99,12 @@ class DataTransformation:
             file_save(
                 path=self.data_transformation_config.root_folder,
                 title="train_transformed_df.csv",
-                df=train_transformed_df,
+                artifact=train_transformed_df,
             )
             file_save(
                 path=self.data_transformation_config.root_folder,
                 title="test_transformed_df.csv",
-                df=test_transformed_df,
+                artifact=test_transformed_df,
             )
 
             logging.info("Saved the files")
