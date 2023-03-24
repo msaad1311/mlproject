@@ -233,7 +233,4 @@ pyrightconfig.json
 .vscode/settings.json
 artifacts/*
 catboost_info/*
-artifacts/raw_data.csv
-artifacts/test_data.csv
-artifacts/train_data.csv
-data/StudentsPerformance.csv
+data/*
