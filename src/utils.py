@@ -4,6 +4,7 @@ from src.logger import logging
 from src.exception import MyException
 import os
 import dill
+import pickle
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 
@@ -13,7 +14,7 @@ def file_save(path, artifact, title, model=False):
         logging.info(f"saved the file: {title}")
         if model:
             with open(os.path.join(path, str(title)), "wb") as file_obj:
-                dill.dump(model, file_obj)
+                pickle.dump(artifact, file_obj)
         else:
             artifact.to_csv(os.path.join(path, str(title)), index=False)
         return
@@ -43,3 +44,10 @@ def evaluate_model(model_dict, x_train, x_test, y_train, y_test,params):
         return result
     except Exception as e:
         raise MyException(e, sys)
+    
+def load_object(filepath):
+    try:
+        with open(filepath,"rb") as f:
+            return pickle.load(f)
+    except Exception as e:
+        raise MyException(e,sys)

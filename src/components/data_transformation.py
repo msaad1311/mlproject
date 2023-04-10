@@ -95,6 +95,7 @@ class DataTransformation:
             )
 
             logging.info("Performed the transformation")
+            logging.debug(type(preprocessor))
 
             file_save(
                 path=self.data_transformation_config.root_folder,
@@ -105,6 +106,13 @@ class DataTransformation:
                 path=self.data_transformation_config.root_folder,
                 title="test_transformed_df.csv",
                 artifact=test_transformed_df,
+            )
+
+            file_save(
+                path=self.data_transformation_config.root_folder,
+                title="preprocessor.pkl",
+                artifact=preprocessor,
+                model=True,
             )
 
             logging.info("Saved the files")
